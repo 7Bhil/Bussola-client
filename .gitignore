@@ -1,7 +1,6 @@
 # Logs
-public/images
 public/ONGBusola-front
-public/optimized
+public/optimized/gallery
 logs
 *.log
 npm-debug.log*
