@@ -112,22 +112,12 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="container py-4 border-top border-secondary">
-        <div className="row">
-          <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-            <span className="text-white-50 small">© {new Date().getFullYear()} <span className="text-secondary fw-bold">ONG BUSOLA</span>. Tous droits réservés.</span>
-            <div className="mt-1">
-              <span className="text-white-50" style={{ fontSize: '0.8rem' }}>
-                Conçu et développé par{' '}
-                <a href="https://7bhil.vercel.app" target="_blank" rel="noopener noreferrer" className="text-warning text-decoration-none fw-bold hover-opacity-100">
-                  CHITOU Bhilal
-                </a>
-                {' '}&amp;{' '}
-                <a href="https://portfolio-jolidon-v2.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-warning text-decoration-none fw-bold hover-opacity-100">
-                  HOUGUE Jolidon
-                </a>
-              </span>
-            </div>
+      <div className="container py-3 border-top border-secondary">
+        <div className="row align-items-center">
+          <div className="col-md-6 text-center text-md-start mb-2 mb-md-0">
+            <span className="text-white small">
+              © {new Date().getFullYear()} <span className="fw-bold" style={{ color: 'var(--bs-secondary)' }}>ONG BUSOLA</span>. Tous droits réservés.
+            </span>
           </div>
           <div className="col-md-6 text-center text-md-end">
             <div className="footer-menu small">
@@ -138,6 +128,56 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* ── Barre de crédits développeurs — haut contraste ── */}
+      <div style={{ backgroundColor: 'rgba(0,0,0,0.35)', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="container py-2 d-flex flex-wrap align-items-center justify-content-center gap-1 text-center">
+          <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="1.8" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+          </svg>
+          <span style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.8rem' }}>
+            Conçu &amp; développé par
+          </span>
+          <a
+            href="https://7bhil.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: '#ffffff',
+              fontWeight: 700,
+              fontSize: '0.82rem',
+              textDecoration: 'none',
+              borderBottom: '1.5px solid rgba(255,255,255,0.4)',
+              paddingBottom: '1px',
+              transition: 'border-color 0.2s'
+            }}
+            onMouseEnter={e => (e.currentTarget.style.borderColor = '#ffffff')}
+            onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.4)')}
+          >
+            CHITOU Bhilal
+          </a>
+          <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.8rem' }}>&amp;</span>
+          <a
+            href="https://portfolio-jolidon-v2.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: '#ffffff',
+              fontWeight: 700,
+              fontSize: '0.82rem',
+              textDecoration: 'none',
+              borderBottom: '1.5px solid rgba(255,255,255,0.4)',
+              paddingBottom: '1px',
+              transition: 'border-color 0.2s'
+            }}
+            onMouseEnter={e => (e.currentTarget.style.borderColor = '#ffffff')}
+            onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.4)')}
+          >
+            HOUGUE Jolidon
+          </a>
+        </div>
+      </div>
+
     </footer>
   );
 };
