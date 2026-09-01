@@ -18,6 +18,7 @@ import Chatbot from './Chatbot'
 import AlbumPage from './AlbumPage'
 import InstallPwaBanner from './InstallPwaBanner'
 import { registerSW } from 'virtual:pwa-register'
+import { SiteProvider } from './SiteContext'
 import { useTraffic } from './useTraffic'
 
 // Signature développeurs
@@ -46,6 +47,7 @@ function TrafficTracker() {
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
+  <SiteProvider>
     <BrowserRouter basename="/">
       <ScrollToTop />
       <TrafficTracker />
@@ -67,4 +69,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <Chatbot />
       <InstallPwaBanner />
     </BrowserRouter>
+  </SiteProvider>
 )
