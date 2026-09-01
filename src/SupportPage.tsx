@@ -3,9 +3,16 @@ import { Link } from 'react-router-dom';
 import { Heart, Handshake, Users, ShieldCheck, Mail, ArrowRight, Star, Megaphone } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { useSiteSettings } from './SiteContext';
 
 export default function SupportPage() {
   const [activeTab, setActiveTab] = useState<'don' | 'benevole' | 'partenaire'>('don');
+  const { settings } = useSiteSettings();
+  const tiers = settings?.supportPage?.tiers || [
+    { amount: 10000, label: '1 kit de dignité menstruelle complet pour une collégienne' },
+    { amount: 25000, label: '1 journée de formation en gestion pour une femme entrepreneure' },
+    { amount: 100000, label: 'Organisation d’une causerie sur les VBG' }
+  ];
   
   useEffect(() => {
     if (window.WOW) {
@@ -23,7 +30,7 @@ export default function SupportPage() {
         className="container-fluid position-relative d-flex align-items-center justify-content-center text-white py-5 shadow-sm"
         style={{
           minHeight: '400px',
-          background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)',
+          background: "linear-gradient(135deg, rgba(40,100,174,0.92) 0%, rgba(248,157,42,0.92) 100%), url('/motif-logo.png') center/cover",
           paddingTop: '120px',
           paddingBottom: '60px',
           overflow: 'hidden'
@@ -92,18 +99,19 @@ export default function SupportPage() {
           </div>
 
           <div className="row gy-4 mb-5">
-            {[
-              { amount: '5 000 FCFA', label: '1 kit de dignité menstruelle complet pour une collégienne' },
-              { amount: '25 000 FCFA', label: '1 journée de formation en gestion pour une femme entrepreneure' },
-              { amount: '50 000 FCFA', label: 'Organisation d’une causerie sur les VBG pour 35 jeunes' }
-            ].map((item) => (
-              <div className="col-md-4" key={item.amount}>
-                <div className="bg-white rounded-4 p-4 h-100 shadow-sm" style={{ border: '1px solid rgba(40,100,174,0.1)' }}>
-                  <div className="fw-black mb-3" style={{ color: '#2864ae', fontSize: '1.5rem' }}>{item.amount}</div>
-                  <p className="text-muted mb-0" style={{ lineHeight: '1.75' }}>{item.label}</p>
+            {tiers.map((item: any, idx: number) => {
+              const displayAmount = typeof item.amount === 'number' ? `${item.amount.toLocaleString()} ${item.currency || 'FCFA'}` : (item.amount || '10 000 FCFA');
+              const displayLabel = item.description || item.label || '';
+              return (
+                <div className="col-md-4" key={idx}>
+                  <div className="bg-white rounded-4 p-4 h-100 shadow-sm" style={{ border: item.highlight ? '2px solid #2864ae' : '1px solid rgba(40,100,174,0.1)' }}>
+                    <div className="fw-black mb-3" style={{ color: '#2864ae', fontSize: '1.5rem' }}>{displayAmount}</div>
+                    {item.title && <div className="fw-bold mb-2 text-dark">{item.title}</div>}
+                    <p className="text-muted mb-0" style={{ lineHeight: '1.75' }}>{displayLabel}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="row justify-content-center">
